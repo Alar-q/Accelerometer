@@ -38,7 +38,7 @@ import android.os.Bundle;
  * @see SensorManager
  *
  */
-public class AngleTest extends Activity {
+public class AndroidRotationExample extends Activity {
     private GLSurfaceView mGLSurfaceView;
     private SensorManager mSensorManager;
     private MyRenderer mRenderer;

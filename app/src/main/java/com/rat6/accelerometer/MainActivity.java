@@ -1,12 +1,31 @@
 package com.rat6.accelerometer;
 
-import com.retro.androidgames.framework.Screen;
-import com.retro.androidgames.framework.impl.AndroidGame;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends AndroidGame {
+public class MainActivity extends ListActivity {
+    String tests[] = {"TestAccelerometerActivity", "TestRotationActivity"};
 
     @Override
-    public Screen getStartScreen() {
-        return new MainScreen(this);
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tests));
+    }
+
+    @Override
+    protected void onListItemClick(ListView list, View view, int position, long id){
+        super.onListItemClick(list, view, position, id);
+        String testPosition = tests[position];
+        try{
+            Class cl = Class.forName("com.rat6.accelerometer." + testPosition );
+            Intent intent = new Intent(this, cl);
+            startActivity(intent);
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
     }
 }

@@ -3,6 +3,7 @@
           package="com.rat6.accelerometer">
 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
             android:allowBackup="true"
@@ -18,6 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".TestAccelerometerActivity"/>
+        <activity android:name=".TestRotationActivity"/>
     </application>
 
 </manifest>
