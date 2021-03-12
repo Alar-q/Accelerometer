@@ -8,6 +8,8 @@ import android.hardware.SensorManager;
 
 import static android.content.Context.SENSOR_SERVICE;
 
+
+//values: [-p; p]
 public class RotationListener implements SensorEventListener {
 
     private SensorManager mSensorManager;

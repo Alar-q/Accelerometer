@@ -12,15 +12,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".AdapterListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TestAccelerometerActivity"/>
-        <activity android:name=".TestRotationActivity"/>
+        <activity android:name=".tests.TestAccelerometerActivity"/>
+        <activity android:name=".tests.TestRotationActivity"/>
+        <activity android:name=".tests.ThreeDLocationTest"/>
     </application>
 
 </manifest>

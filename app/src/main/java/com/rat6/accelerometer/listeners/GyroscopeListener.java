@@ -6,26 +6,26 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-//values: m/s^2
-public class AccelerationListener implements SensorEventListener {
+//Все точно так, как и в ускорении
+public class GyroscopeListener implements SensorEventListener {
 
     private SensorManager manager;
     private Sensor sensor;
-    private float accelX, accelY, accelZ;
+    private float angularVelX, angularVelY, angularVelZ;
     private int frequency;
 
-    public AccelerationListener(Context context, int TYPE_ACCELERATION, int frequency){ //TYPE_ACCELERATION = Sensor.TYPE_LINEAR_ACCELERATION, frequency = SensorManager.SENSOR_DELAY_UI
+    public GyroscopeListener(Context context, int frequency){ // frequency = SensorManager.SENSOR_DELAY_UI
         this.frequency = frequency;
         manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = manager.getDefaultSensor(TYPE_ACCELERATION);
+        sensor = manager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         manager.registerListener(this, sensor, frequency);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        accelX = event.values[0];
-        accelY = event.values[1];
-        accelZ = event.values[2];
+        angularVelX = event.values[0];
+        angularVelY = event.values[1];
+        angularVelZ = event.values[2];
     }
 
     @Override
@@ -33,14 +33,14 @@ public class AccelerationListener implements SensorEventListener {
 
     }
 
-    public float getAccelX() {
-        return accelX;
+    public float getAngularVelX() {
+        return angularVelX;
     }
-    public float getAccelY() {
-        return accelY;
+    public float getAngularVelY() {
+        return angularVelY;
     }
-    public float getAccelZ() {
-        return accelZ;
+    public float getAngularVelZ() {
+        return angularVelZ;
     }
 
     public void onResume() {
@@ -51,3 +51,5 @@ public class AccelerationListener implements SensorEventListener {
         manager.unregisterListener(this);
     }
 }
+
+
