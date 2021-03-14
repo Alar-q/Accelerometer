@@ -81,6 +81,13 @@ public class Vector3 {
         return this;
     }
 
+    public Vector3 div(float scalar) {
+        this.x /= scalar;
+        this.y /= scalar;
+        this.z /= scalar;
+        return this;
+    }
+
     public float len() {
         return (float) sqrt(x * x + y * y + z * z);
     }
@@ -135,5 +142,9 @@ public class Vector3 {
         float distY = this.y - y;
         float distZ = this.z - z;
         return distX * distX + distY * distY + distZ * distZ;
+    }
+
+    public boolean equals(Vector3 vector3){
+        return (x==vector3.x && y==vector3.y && z==vector3.z);
     }
 }

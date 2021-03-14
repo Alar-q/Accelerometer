@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.rat6.accelerometer.listeners.AccelerationListener;
+import com.retro.androidgames.framework.math.Vector3;
 
 public class TestAccelerometerActivity extends Activity {
 
@@ -19,7 +20,8 @@ public class TestAccelerometerActivity extends Activity {
 
     private StringBuilder stringBuilder;
 
-    private AccelerationListener linearAccelerationListener;
+    private AccelerationListener acceleration;
+    private AccelerationListener linearAcceleration;
     private AccelerationListener gravity;
 
     @Override
@@ -30,7 +32,8 @@ public class TestAccelerometerActivity extends Activity {
 
         stringBuilder = new StringBuilder();
 
-        linearAccelerationListener = new AccelerationListener(this, Sensor.TYPE_GYROSCOPE, SensorManager.SENSOR_DELAY_NORMAL);
+        acceleration = new AccelerationListener(this, Sensor.TYPE_ACCELEROMETER, SensorManager.SENSOR_DELAY_NORMAL);
+        linearAcceleration = new AccelerationListener(this, Sensor.TYPE_LINEAR_ACCELERATION, SensorManager.SENSOR_DELAY_NORMAL); //linear = acceleration - gravity
         gravity = new AccelerationListener(this, Sensor.TYPE_GRAVITY, SensorManager.SENSOR_DELAY_NORMAL);
 
         textView = new TextView(this);
@@ -48,7 +51,6 @@ public class TestAccelerometerActivity extends Activity {
     }
 
 
-
     private class TextView extends View{
 
         private Paint paint;
@@ -63,11 +65,15 @@ public class TestAccelerometerActivity extends Activity {
         }
 
         protected void onDraw(Canvas canvas){
-            getValues(stringBuilder, linearAccelerationListener);
-            canvas.drawText("Linear: " + stringBuilder.toString(), 50,50, paint);
+            getValues(stringBuilder, acceleration);
+            canvas.drawText("Acceleration: " + stringBuilder.toString(), 50,50, paint);
+
+            getValues(stringBuilder, linearAcceleration);
+            canvas.drawText("Linear: " + stringBuilder.toString(), 50,100, paint);
 
             getValues(stringBuilder, gravity);
-            canvas.drawText("Gravity: " + stringBuilder.toString(), 50,100, paint);
+            canvas.drawText("Gravity: " + stringBuilder.toString(), 50,150, paint);
+
             invalidate();
         }
     }

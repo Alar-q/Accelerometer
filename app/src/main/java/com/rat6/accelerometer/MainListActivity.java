@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class AdapterListActivity extends ListActivity {
-    String tests[] = {"TestAccelerometerActivity", "TestRotationActivity", };
+public class MainListActivity extends ListActivity {
+    String tests[] = {"TestAccelerometerActivity", "TestRotationActivity", "ThreeDLocationTest"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -21,7 +21,7 @@ public class AdapterListActivity extends ListActivity {
         super.onListItemClick(list, view, position, id);
         String testPosition = tests[position];
         try{
-            Class cl = Class.forName("com.rat6.accelerometer." + testPosition );
+            Class cl = Class.forName("com.rat6.accelerometer.tests." + testPosition);
             Intent intent = new Intent(this, cl);
             startActivity(intent);
         }catch (ClassNotFoundException e){
